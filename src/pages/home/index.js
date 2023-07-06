@@ -2,6 +2,7 @@
 import Grid from '@mui/material/Grid'
 import AppointmentStatusCard from 'src/views/dashboard/AppointmentStatusCard'
 import TelemedRoomCard from 'src/views/dashboard/TelemedRoomCard'
+import MonthlyOverviewCard from 'src/views/dashboard/MonthlyOverviewCard'
 import Alert from '@mui/material/Alert'
 import { styled } from '@mui/material/styles'
 import Link from 'next/link'
@@ -15,9 +16,9 @@ const Home = () => {
       color: 'black',
     }
   }))
-  const LinkStyled = styled(Link)(({ theme }) => ({
+  const LinkStyled = styled(Link)(() => ({
     textDecoration: 'none',
-    color: `${theme.palette.primary.main} !important`
+    color: '#1376F0 !important'
   }))
   return (
     <Grid container spacing={6}>
@@ -29,6 +30,9 @@ const Home = () => {
       </Grid>
       <Grid item xs={12} md={6}>
         <TelemedRoomCard />
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <MonthlyOverviewCard />
       </Grid>
     </Grid>
   )

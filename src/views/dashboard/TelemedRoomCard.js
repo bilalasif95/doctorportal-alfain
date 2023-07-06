@@ -23,7 +23,7 @@ const TelemedRoomCard = () => {
     const url = 'https://anything/anywhere/ghtg/anything/anywhere/ghtg/anything/'
     const InputBase = styled(OutlinedInput)(() => ({
         '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'blue !important',
+            borderColor: '#1376F0 !important',
         },
     }))
     return (
@@ -59,7 +59,7 @@ const TelemedRoomCard = () => {
                             id='icons-adornment-copy'
                             readOnly
                             disabled
-                            inputProps={{ style: { color: 'blue', WebkitTextFillColor: 'blue', height: '1.2em' } }}
+                            inputProps={{ style: { color: '#1376F0', WebkitTextFillColor: '#1376F0', height: '1.2em' } }}
                             endAdornment={
                                 <InputAdornment position='end'>
                                     <IconButton
@@ -68,7 +68,7 @@ const TelemedRoomCard = () => {
                                         onMouseDown={e => e.preventDefault()}
                                         aria-label='toggle copy'
                                     >
-                                        <Icon color='blue' fontSize={20} icon='mdi:content-copy' />
+                                        <Icon color='#1376F0' fontSize={20} icon='mdi:content-copy' />
                                     </IconButton>
                                 </InputAdornment>
                             }
