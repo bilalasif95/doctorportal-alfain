@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid'
 import AppointmentStatusCard from 'src/views/dashboard/AppointmentStatusCard'
 import TelemedRoomCard from 'src/views/dashboard/TelemedRoomCard'
 import MonthlyOverviewCard from 'src/views/dashboard/MonthlyOverviewCard'
+import MonthlyVisitsCard from 'src/views/dashboard/MonthlyVisitsCard'
 import Alert from '@mui/material/Alert'
 import { styled } from '@mui/material/styles'
 import Link from 'next/link'
@@ -33,6 +34,11 @@ const Home = () => {
       </Grid>
       <Grid item xs={12} md={4}>
         <MonthlyOverviewCard />
+      </Grid>
+      <Grid item xs={12} md={8}>
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <MonthlyVisitsCard />
       </Grid>
     </Grid>
   )
