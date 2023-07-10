@@ -26,10 +26,10 @@ const Home = () => {
       <Grid item xs={12}>
         <StyledAlert severity='warning'><strong>Seth Hallam</strong> is waiting in the room. <LinkStyled href='https://anything/anywhere/ghtg/anything/anywhere/ghtg/anything/' target='_blank'>Join the call</LinkStyled> to start the appointment session.</StyledAlert>
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={7}>
         <AppointmentStatusCard />
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={5}>
         <TelemedRoomCard />
       </Grid>
       <Grid item xs={12} md={4}>
