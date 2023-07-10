@@ -115,7 +115,7 @@ const MonthlyVisitsCard = () => {
                 subheaderTypographyProps={{ sx: { color: theme => `${theme.palette.text.disabled} !important` } }}
             />
             <CardContent>
-                <ReactApexcharts type='donut' height={400} options={options} series={[75, 25]} />
+                <ReactApexcharts type='donut' height={300} options={options} series={[75, 25]} />
             </CardContent>
         </Card>
     )
