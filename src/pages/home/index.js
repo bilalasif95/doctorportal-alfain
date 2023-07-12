@@ -10,12 +10,12 @@ import { styled } from '@mui/material/styles'
 import Link from 'next/link'
 
 const Home = () => {
-  const StyledAlert = styled(Alert)(() => ({
+  const StyledAlert = styled(Alert)(({ theme }) => ({
     '& .MuiAlert-message': {
-      color: 'black',
+      color: theme.palette.mode === 'dark' ? '#FFF' : 'black',
     },
     '& .MuiAlert-icon': {
-      color: 'black',
+      color: theme.palette.mode === 'dark' ? '#FFF' : 'black',
     }
   }))
   const LinkStyled = styled(Link)(() => ({
@@ -24,6 +24,12 @@ const Home = () => {
   }))
   const StyledGrid = styled(Grid)(() => ({
     '@media (max-width:1004px)': {
+      maxWidth: '100%',
+      flexBasis: '100%'
+    }
+  }))
+  const SmallStyledGrid = styled(Grid)(() => ({
+    '@media (max-width:768px)': {
       maxWidth: '100%',
       flexBasis: '100%'
     }
@@ -43,12 +49,12 @@ const Home = () => {
         <Grid container spacing={6}>
           <Grid item xs={12} sm={4}>
             <Grid container spacing={6}>
-              <Grid item xs={6} sm={12}>
+              <SmallStyledGrid item xs={6} sm={12}>
                 <MonthlyOverviewCard />
-              </Grid>
-              <Grid item xs={6} sm={12}>
+              </SmallStyledGrid>
+              <SmallStyledGrid item xs={6} sm={12}>
                 <MonthlyVisitsCard />
-              </Grid>
+              </SmallStyledGrid>
             </Grid>
           </Grid>
           <Grid item xs={12} sm={8}>

@@ -30,7 +30,7 @@ const ServerSideToolbar = props => {
         placeholder='Search By Date'
         InputProps={{
           endAdornment: (
-            <IconButton size='small' title='Clear' aria-label='Clear' onClick={props.clearSearch}>
+            <IconButton size='small'>
               <Icon icon='material-symbols:calendar-today' fontSize={20} />
             </IconButton>
           )

@@ -5,7 +5,7 @@ import { useEffect, useState, useCallback } from 'react'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
-import { DataGrid } from '@mui/x-data-grid'
+import { DataGrid, GridOverlay } from '@mui/x-data-grid'
 
 // ** ThirdParty Components
 import axios from 'axios'
@@ -21,14 +21,15 @@ import { getInitials } from 'src/@core/utils/get-initials'
 // ** renders client column
 const renderClient = params => {
   const { row } = params
-  const stateNum = Math.floor(Math.random() * 6)
-  const states = ['success', 'error', 'warning', 'info', 'primary', 'secondary']
-  const color = states[stateNum]
+  // const stateNum = Math.floor(Math.random() * 6)
+  // const states = ['success', 'error', 'warning', 'info', 'primary', 'secondary']
+  // const color = states[stateNum]
   if (row.avatar.length) {
     return <CustomAvatar src={`/images/avatars/${row.avatar}`} sx={{ mr: 3, width: '1.875rem', height: '1.875rem' }} />
   } else {
     return (
-      <CustomAvatar skin='light' color={color} sx={{ mr: 3, fontSize: '.8rem', width: '1.875rem', height: '1.875rem' }}>
+      // color={color}
+      <CustomAvatar skin='light' sx={{ mr: 3, fontSize: '.8rem', width: '1.875rem', height: '1.875rem' }}>
         {getInitials(row.full_name ? row.full_name : 'John Doe')}
       </CustomAvatar>
     )
@@ -38,9 +39,6 @@ const renderClient = params => {
 const statusObj = {
   1: { title: 'Telemed', color: 'primary' },
   2: { title: 'Walk In', color: 'warning' },
-  3: { title: 'rejected', color: 'error' },
-  4: { title: 'resigned', color: 'warning' },
-  5: { title: 'applied', color: 'info' }
 }
 
 const columns = [
@@ -103,7 +101,11 @@ const columns = [
           sx={{ '& .MuiChip-label': { textTransform: 'capitalize' } }}
         />
       )
-    }
+    },
+    valueGetter: (params) => {
+      const status = statusObj[params.row.status];
+      return status.title;
+    },
   }
 ]
 
@@ -158,6 +160,14 @@ const AppointmentsTable = () => {
     fetchTableData(sort, value, sortColumn)
   }
 
+  const CustomNoResultsOverlay = () => (
+    <GridOverlay>
+      <Typography variant="body1" color="textSecondary">
+        No result found
+      </Typography>
+    </GridOverlay>
+  );
+
   return (
     <Card>
       <DataGrid
@@ -169,10 +179,11 @@ const AppointmentsTable = () => {
         pageSize={pageSize}
         sortingMode='server'
         paginationMode='server'
+        // disableColumnMenu
         onSortModelChange={handleSortModel}
         rowsPerPageOptions={[10, 25, 50]}
         onPageChange={newPage => setPage(newPage)}
-        components={{ Toolbar: ServerSideToolbar }}
+        components={{ Toolbar: ServerSideToolbar, NoRowsOverlay: CustomNoResultsOverlay }}
         onPageSizeChange={newPageSize => setPageSize(newPageSize)}
         componentsProps={{
           baseButton: {

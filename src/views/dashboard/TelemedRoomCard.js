@@ -26,6 +26,11 @@ const TelemedRoomCard = () => {
             borderColor: '#1376F0 !important',
         },
     }))
+    const StyledGrid = styled(Grid)(() => ({
+        '@media (max-width:600px)': {
+            paddingLeft: '1.25rem'
+        },
+    }))
     return (
         <Card>
             <CardHeader
@@ -52,7 +57,7 @@ const TelemedRoomCard = () => {
                 }}
             />
             <CardContent sx={{ pt: theme => `${theme.spacing(3)} !important` }}>
-                <Grid container spacing={[5, 0]}>
+                <StyledGrid container spacing={[5, 0]}>
                     <FormControl fullWidth>
                         <InputBase
                             value={url}
@@ -74,7 +79,7 @@ const TelemedRoomCard = () => {
                             }
                         />
                     </FormControl>
-                </Grid>
+                </StyledGrid>
             </CardContent>
         </Card>
     )

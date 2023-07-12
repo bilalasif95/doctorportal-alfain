@@ -6,12 +6,12 @@ import Link from 'next/link'
 import AppointmentsTable from 'src/views/appointments/AppointmentsTable'
 
 const ACLPage = () => {
-  const StyledAlert = styled(Alert)(() => ({
+  const StyledAlert = styled(Alert)(({ theme }) => ({
     '& .MuiAlert-message': {
-      color: 'black',
+      color: theme.palette.mode === 'dark' ? '#FFF' : 'black',
     },
     '& .MuiAlert-icon': {
-      color: 'black',
+      color: theme.palette.mode === 'dark' ? '#FFF' : 'black',
     }
   }))
   const LinkStyled = styled(Link)(() => ({
