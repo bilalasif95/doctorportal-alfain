@@ -1,48 +1,33 @@
-// ** React Imports
-import { useContext } from 'react'
-
-// ** Context Imports
-import { AbilityContext } from 'src/layouts/components/acl/Can'
-
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card'
-import CardHeader from '@mui/material/CardHeader'
-import Typography from '@mui/material/Typography'
-import CardContent from '@mui/material/CardContent'
+import Alert from '@mui/material/Alert'
+import { styled } from '@mui/material/styles'
+import Link from 'next/link'
+import AppointmentsTable from 'src/views/appointments/AppointmentsTable'
 
 const ACLPage = () => {
-  // ** Hooks
-  const ability = useContext(AbilityContext)
-
+  const StyledAlert = styled(Alert)(() => ({
+    '& .MuiAlert-message': {
+      color: 'black',
+    },
+    '& .MuiAlert-icon': {
+      color: 'black',
+    }
+  }))
+  const LinkStyled = styled(Link)(() => ({
+    textDecoration: 'none',
+    color: '#1376F0 !important'
+  }))
   return (
     <Grid container spacing={6}>
-      <Grid item md={6} xs={12}>
-        <Card>
-          <CardHeader title='Common' />
-          <CardContent>
-            <Typography sx={{ mb: 4 }}>No ability is required to view this card</Typography>
-            <Typography sx={{ color: 'primary.main' }}>This card is visible to 'user' and 'admin' both</Typography>
-          </CardContent>
-        </Card>
+      <Grid item xs={12}>
+        <StyledAlert severity='warning'>Your appointment with <strong>Jordan Stevenson</strong> is in <strong>5 minutes</strong> from now. <LinkStyled href='https://anything/anywhere/ghtg/anything/anywhere/ghtg/anything/' target='_blank'>Join the room</LinkStyled></StyledAlert>
       </Grid>
-      {ability?.can('read', 'analytics') ? (
-        <Grid item md={6} xs={12}>
-          <Card>
-            <CardHeader title='Analytics' />
-            <CardContent>
-              <Typography sx={{ mb: 4 }}>User with 'Analytics' subject's 'Read' ability can view this card</Typography>
-              <Typography sx={{ color: 'error.main' }}>This card is visible to 'admin' only</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      ) : null}
+      <Grid item xs={12}>
+        <AppointmentsTable />
+      </Grid>
     </Grid>
   )
-}
-ACLPage.acl = {
-  action: 'read',
-  subject: 'acl-page'
 }
 
 export default ACLPage
