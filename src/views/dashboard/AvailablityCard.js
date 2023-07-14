@@ -1,3 +1,6 @@
+// ** React Imports
+import { useState } from 'react'
+
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
@@ -59,9 +62,117 @@ const data = [
     midtitle: 'Asthma Treatment',
     iconcolor: '#9155FD'
   },
+  {
+    chipText: 'Monday',
+    chipColor: 'success',
+    title: 'January 17, 2022',
+    src: '/images/avatars/4.png',
+    subtitle: '12:56pm - 12:00am',
+    midtitle: 'Urgent Health Care',
+    iconcolor: '#56CA00'
+  },
+  {
+    chipColor: 'warning',
+    chipText: 'Tuesday',
+    title: 'January 18, 2022',
+    src: '/images/avatars/8.png',
+    subtitle: '12:56pm - 12:00am',
+    midtitle: 'Primary Health Care',
+    iconcolor: '#FFB400'
+  },
+  {
+    chipText: 'Wednesday',
+    chipColor: 'secondary',
+    title: 'January 19, 2022',
+    src: '/images/avatars/7.png',
+    subtitle: '21 Jul | 08:20-10:30',
+    midtitle: 'Asthma Treatment',
+    iconcolor: '#3A35416B'
+  },
+  {
+    chipText: 'Thursday',
+    chipColor: 'error',
+    title: 'January 20, 2022',
+    src: '/images/avatars/3.png',
+    subtitle: '12:56pm - 12:00am',
+    midtitle: 'Asthma Treatment',
+    iconcolor: '#FF4C51'
+  },
+  {
+    chipText: 'Friday',
+    chipColor: 'primary',
+    title: 'January 21, 2022',
+    src: '/images/avatars/2.png',
+    subtitle: '12:56pm - 12:00am',
+    midtitle: 'Asthma Treatment',
+    iconcolor: '#9155FD'
+  },
+  {
+    chipText: 'Saturday',
+    chipColor: 'success',
+    title: 'January 22, 2022',
+    src: '/images/avatars/4.png',
+    subtitle: '12:56pm - 12:00am',
+    midtitle: 'Urgent Health Care',
+    iconcolor: '#56CA00'
+  },
+  {
+    chipColor: 'warning',
+    chipText: 'Sunday',
+    title: 'January 23, 2022',
+    src: '/images/avatars/8.png',
+    subtitle: '12:56pm - 12:00am',
+    midtitle: 'Primary Health Care',
+    iconcolor: '#FFB400'
+  },
+  {
+    chipText: 'Monday',
+    chipColor: 'secondary',
+    title: 'January 24, 2022',
+    src: '/images/avatars/7.png',
+    subtitle: '21 Jul | 08:20-10:30',
+    midtitle: 'Asthma Treatment',
+    iconcolor: '#3A35416B'
+  },
+  {
+    chipText: 'Tuesday',
+    chipColor: 'error',
+    title: 'January 25, 2022',
+    src: '/images/avatars/3.png',
+    subtitle: '12:56pm - 12:00am',
+    midtitle: 'Asthma Treatment',
+    iconcolor: '#FF4C51'
+  },
+  {
+    chipText: 'Wednesday',
+    chipColor: 'primary',
+    title: 'January 26, 2022',
+    src: '/images/avatars/2.png',
+    subtitle: '12:56pm - 12:00am',
+    midtitle: 'Asthma Treatment',
+    iconcolor: '#9155FD'
+  },
 ]
 
 const AvailablityCard = () => {
+  const [startIndex, setStartIndex] = useState(0);
+
+  const handlePrevWeek = () => {
+    if (startIndex > 0) {
+      setStartIndex(startIndex - 5);
+    }
+  };
+
+  const handleNextWeek = () => {
+    if (startIndex + 5 < data.length) {
+      setStartIndex(startIndex + 5);
+    }
+  };
+
+  const displayedData = data.slice(startIndex, startIndex + 5);
+  const hasPreviousItems = startIndex > 0;
+  const hasNextItems = startIndex + 5 < data.length;
+
   return (
     <Card>
       <CardHeader
@@ -82,22 +193,23 @@ const AvailablityCard = () => {
         subheader={
           <Typography variant='body2'>
             <Box component='span' sx={{ fontWeight: 600, color: 'text.primary', display: 'flex', alignItems: 'center' }}>
-              <Icon fontSize={20} icon='mdi:chevron-left' />
-              <Icon fontSize={20} icon='mdi:chevron-right' />
-              Jan 12, 2022 - Jan 16, 2022
+              <Icon fontSize={20} icon='mdi:chevron-left' onClick={handlePrevWeek} style={{ cursor: hasPreviousItems ? 'pointer' : 'not-allowed' }} />
+              <Icon fontSize={20} icon='mdi:chevron-right' onClick={handleNextWeek} style={{ cursor: hasNextItems ? 'pointer' : 'not-allowed' }} />
+              {displayedData.length > 0 &&
+                `${displayedData[0].title} - ${displayedData[displayedData.length - 1].title}`}
             </Box>
           </Typography>
         }
       />
       <CardContent>
-        {data.map((item, index) => {
+        {displayedData.map((item, index) => {
           return (
             <Box
               key={item.title}
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                ...(index !== data.length - 1 ? { mb: 6 } : {})
+                ...(index !== displayedData.length - 1 ? { mb: 6 } : {})
               }}
             >
               <Box
