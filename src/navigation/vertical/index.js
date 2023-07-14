@@ -2,16 +2,16 @@ const navigation = () => {
   return [
     {
       title: 'Dashboard',
-      path: '/home',
+      path: '/dashboard',
       icon: 'mdi:home-outline',
     },
     {
       title: 'Televisit Room',
-      path: '/second-page',
+      path: '/televisit',
       icon: 'mdi:video',
     },
     {
-      path: '/acl',
+      path: '/appointments',
       title: 'Appointments',
       icon: 'mdi:history',
     }
