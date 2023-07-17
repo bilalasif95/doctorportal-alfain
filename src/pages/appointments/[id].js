@@ -14,6 +14,16 @@ import { styled } from '@mui/material/styles'
 import MuiTabList from '@mui/lab/TabList'
 import Icon from 'src/@core/components/icon'
 import AppointmentDetailsTable from 'src/views/appointments/AppointmentDetailsTable'
+import CardSnippet from 'src/@core/components/card-snippet'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Divider from '@mui/material/Divider'
+
+// ** Demo Components Imports
+import EditorControlled from 'src/views/appointments/EditorControlled'
+
+// ** Styles
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 const TabList = styled(MuiTabList)(({ theme }) => ({
     '& .MuiTabs-indicator': {
@@ -31,6 +41,27 @@ const TabList = styled(MuiTabList)(({ theme }) => ({
     },
     '& .MuiTab-iconWrapper': {
         marginBottom: '0px !important'
+    }
+}))
+
+const StyledCardSnippet = styled(CardSnippet)(({ theme }) => ({
+    '& .MuiCardHeader-action': {
+        display: 'none'
+    },
+    '& .MuiCardContent-root': {
+        padding: 0
+    },
+    '& .rdw-editor-toolbar': {
+        padding: '10px 5px 5px 16px',
+        borderRight: 'none',
+        borderLeft: 'none'
+    },
+    '& .rdw-editor-main': {
+        minHeight: '30rem',
+        padding: '0 1.25rem'
+    },
+    '& .public-DraftEditorPlaceholder-root': {
+        color: theme.palette.mode === 'dark' ? '#FFF' : '#3A354161'
     }
 }))
 
@@ -65,10 +96,27 @@ const AppointmentDetails = () => {
                         <AppointmentDetailsTable />
                     </TabPanel>
                     <TabPanel value='2'>
-                        <Typography>
-                            Chocolate bar carrot cake candy canes sesame snaps. Cupcake pie gummi bears jujubes candy canes. Chupa chups
-                            sesame snaps halvah.
-                        </Typography>
+                        <Grid item xs={12}>
+                            <StyledCardSnippet
+                                sx={{ overflow: 'visible' }}
+                                title='Write New Prescription'
+                                code={{
+                                    tsx: null,
+                                    jsx: null
+                                }}
+                            >
+                                <EditorControlled />
+                                <Divider sx={{ m: '0 !important' }} />
+                                <Box sx={{ padding: '1.25rem', display: 'flex', alignItems: 'center' }}>
+                                    <Button variant='contained' style={{ backgroundColor: '#1376F0', border: '1px solid #1376F0' }} fontSize={20}>
+                                        Save
+                                    </Button>
+                                    <Button variant='outlined' style={{ color: '#1376F0', border: '1px solid #1376F0', marginLeft: '1rem' }} fontSize={20}>
+                                        Send To Patient
+                                    </Button>
+                                </Box>
+                            </StyledCardSnippet>
+                        </Grid>
                     </TabPanel>
                     <TabPanel value='3'>
                         <Typography>
