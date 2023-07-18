@@ -5,6 +5,10 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid'
 import UserProfileHeader from 'src/views/appointments/UserProfileHeader'
 import { useState } from 'react'
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { useDispatch, useSelector } from 'react-redux'
+import { sendMsg } from 'src/store/chat'
 
 // ** MUI Imports
 import Tab from '@mui/material/Tab'
@@ -18,6 +22,8 @@ import CardSnippet from 'src/@core/components/card-snippet'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
+import ChatLog from 'src/views/appointments/ChatLog'
+import SendMsgForm from 'src/views/appointments/SendMsgForm'
 
 // ** Demo Components Imports
 import EditorControlled from 'src/views/appointments/EditorControlled'
@@ -73,6 +79,12 @@ const AppointmentDetails = () => {
     const handleChange = (event, newValue) => {
         setValue(newValue)
     }
+
+    const theme = useTheme()
+    const hidden = useMediaQuery(theme.breakpoints.down('lg'))
+    const store = useSelector(state => state.chat)
+    const selectedChat = store.selectedChat
+    const dispatch = useDispatch()
     return (
         <Grid item xs={12}>
             <Breadcrumbs aria-label="breadcrumb">
@@ -86,8 +98,7 @@ const AppointmentDetails = () => {
             </Grid>
             <Grid style={{ marginTop: '1rem' }}>
                 <TabContext value={value}>
-                    <TabList onChange={handleChange} aria-label='customized tabs example'>
-                        <Tab icon={<Icon icon='mdi:account-outline' />} value='1' label='Appoinment Details' />
+                    <TabList variant='scrollable' onChange={handleChange} aria-label='forced scroll tabs example'>                        <Tab icon={<Icon icon='mdi:account-outline' />} value='1' label='Appoinment Details' />
                         <Tab icon={<Icon icon='mdi:view-grid-outline' />} value='2' label='Patient Prescription' />
                         <Tab icon={<Icon icon='mdi:account-outline' />} value='3' label='Clinic Notes' />
                         <Tab icon={<Icon icon='mdi:account-outline' />} value='4' label='Patient History' />
@@ -118,11 +129,9 @@ const AppointmentDetails = () => {
                             </StyledCardSnippet>
                         </Grid>
                     </TabPanel>
-                    <TabPanel value='3'>
-                        <Typography>
-                            Danish tiramisu jujubes cupcake chocolate bar cake cheesecake chupa chups. Macaroon ice cream tootsie roll
-                            carrot cake gummi bears.
-                        </Typography>
+                    <TabPanel value='3' style={{ padding: '1rem 0px 0px 0px' }}>
+                        <ChatLog hidden={hidden} data={{ ...selectedChat, userContact: query }} />
+                        <SendMsgForm store={store} dispatch={dispatch} sendMsg={sendMsg} />
                     </TabPanel>
                     <TabPanel value='4'>
                         <Typography>
