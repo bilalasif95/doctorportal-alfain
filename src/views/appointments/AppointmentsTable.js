@@ -18,6 +18,8 @@ import ServerSideToolbar from './ServerSideToolbar'
 // ** Utils Import
 import { getInitials } from 'src/@core/utils/get-initials'
 
+import { useRouter } from 'next/router';
+
 // ** renders client column
 const renderClient = params => {
   const { row } = params
@@ -66,31 +68,31 @@ const columns = [
     flex: 0.175,
     minWidth: 120,
     headerName: 'Appointment Time',
-    field: 'start_date',
+    field: 'time',
     renderCell: params => (
       <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.start_date}
+        {params.row.time}
       </Typography>
     )
   },
   {
     flex: 0.175,
     minWidth: 110,
-    field: 'post',
+    field: 'reason',
     headerName: 'Reason for visit',
     renderCell: params => (
       <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.post}
+        {params.row.reason}
       </Typography>
     )
   },
   {
     flex: 0.175,
     minWidth: 140,
-    field: 'status',
+    field: 'type',
     headerName: 'Type of Appointment',
     renderCell: params => {
-      const status = statusObj[params.row.status]
+      const status = statusObj[params.row.type]
 
       return (
         <CustomChip
@@ -103,7 +105,7 @@ const columns = [
       )
     },
     valueGetter: (params) => {
-      const status = statusObj[params.row.status];
+      const status = statusObj[params.row.type];
       return status.title;
     },
   }
@@ -168,6 +170,13 @@ const AppointmentsTable = () => {
     </GridOverlay>
   );
 
+  const router = useRouter();
+
+  const handleRowClick = (params) => {
+    const selectedId = params.row.id;
+    router.push({ pathname: `/appointments/${selectedId}`, query: params.row });
+  };
+
   return (
     <Card>
       <DataGrid
@@ -179,6 +188,7 @@ const AppointmentsTable = () => {
         pageSize={pageSize}
         sortingMode='server'
         paginationMode='server'
+        onRowClick={handleRowClick}
         // disableColumnMenu
         onSortModelChange={handleSortModel}
         rowsPerPageOptions={[10, 25, 50]}
