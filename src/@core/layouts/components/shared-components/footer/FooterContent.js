@@ -7,9 +7,9 @@ import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-const LinkStyled = styled(Link)(({ theme }) => ({
+const LinkStyled = styled(Link)(() => ({
   textDecoration: 'none',
-  color: theme.palette.primary.main
+  color: '#1376F0'
 }))
 
 const FooterContent = () => {
@@ -19,31 +19,28 @@ const FooterContent = () => {
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
       <Typography sx={{ mr: 2 }}>
-        {`© ${new Date().getFullYear()}, Made with `}
-        <Box component='span' sx={{ color: 'error.main' }}>
-          ❤️
-        </Box>
-        {` by `}
-        <LinkStyled target='_blank' href='https://themeselection.com/'>
-          ThemeSelection
+        Copy Rights © 2022
+        <LinkStyled target='_blank' href='/'>
+          &nbsp;ZebraDoctor
         </LinkStyled>
+        . All Rights Reserved
       </Typography>
       {hidden ? null : (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', '& :not(:last-child)': { mr: 4 } }}>
-          <LinkStyled target='_blank' href='https://themeselection.com/license/'>
+          {/* <LinkStyled target='_blank' href='https://themeselection.com/license/'>
             License
-          </LinkStyled>
+          </LinkStyled> */}
           <LinkStyled target='_blank' href='https://themeselection.com/'>
-            More Themes
+            Privacy Policy
           </LinkStyled>
           <LinkStyled
             target='_blank'
             href='https://demos.themeselection.com/materio-mui-react-nextjs-admin-template/documentation'
           >
-            Documentation
+            Help & Support
           </LinkStyled>
           <LinkStyled target='_blank' href='https://themeselection.com/support/'>
-            Support
+            About Us
           </LinkStyled>
         </Box>
       )}

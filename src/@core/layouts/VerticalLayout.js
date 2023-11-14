@@ -126,7 +126,7 @@ const VerticalLayout = props => {
         scrollToTop(props)
       ) : (
         <ScrollToTop className='mui-fixed'>
-          <Fab color='primary' size='small' aria-label='scroll back to top'>
+          <Fab style={{ backgroundColor: '#1376F0' }} color='primary' size='small' aria-label='scroll back to top'>
             <Icon icon='mdi:arrow-up' />
           </Fab>
         </ScrollToTop>

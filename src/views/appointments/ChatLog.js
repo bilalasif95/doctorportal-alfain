@@ -6,7 +6,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
 // ** Third Party Components
-import PerfectScrollbarComponent from 'react-perfect-scrollbar'
+// import PerfectScrollbarComponent from 'react-perfect-scrollbar'
 
 
 const ChatLog = props => {
@@ -144,9 +144,11 @@ const ChatLog = props => {
             )
         } else {
             return (
-                <PerfectScrollbarComponent ref={chatArea} options={{ wheelPropagation: false }}>
+                // <PerfectScrollbarComponent ref={chatArea} options={{ wheelPropagation: false }}>
+                <Box>
                     {children}
-                </PerfectScrollbarComponent>
+                </Box>
+                // </PerfectScrollbarComponent>
             )
         }
     }

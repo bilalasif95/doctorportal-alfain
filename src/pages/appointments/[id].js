@@ -18,6 +18,7 @@ import { styled } from '@mui/material/styles'
 import MuiTabList from '@mui/lab/TabList'
 import Icon from 'src/@core/components/icon'
 import AppointmentDetailsTable from 'src/views/appointments/AppointmentDetailsTable'
+import PatientHistory from 'src/views/appointments/PatientHistory'
 import CardSnippet from 'src/@core/components/card-snippet'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -103,10 +104,10 @@ const AppointmentDetails = () => {
                         <Tab icon={<Icon icon='mdi:account-outline' />} value='3' label='Clinic Notes' />
                         <Tab icon={<Icon icon='mdi:account-outline' />} value='4' label='Patient History' />
                     </TabList>
-                    <TabPanel style={{ paddingLeft: 0, paddingRight: 0 }} value='1'>
+                    <TabPanel style={{ padding: '0.75rem 0px' }} value='1'>
                         <AppointmentDetailsTable />
                     </TabPanel>
-                    <TabPanel value='2'>
+                    <TabPanel value='2' style={{ padding: '0.75rem 0px' }}>
                         <Grid item xs={12}>
                             <StyledCardSnippet
                                 sx={{ overflow: 'visible' }}
@@ -133,11 +134,8 @@ const AppointmentDetails = () => {
                         <ChatLog hidden={hidden} data={{ ...selectedChat, userContact: query }} />
                         <SendMsgForm store={store} dispatch={dispatch} sendMsg={sendMsg} />
                     </TabPanel>
-                    <TabPanel value='4'>
-                        <Typography>
-                            Danish tiramisu jujubes cupcake chocolate bar cake cheesecake chupa chups. Macaroon ice cream tootsie roll
-                            carrot cake gummi bears.
-                        </Typography>
+                    <TabPanel value='4' style={{ padding: '0.75rem 0px' }}>
+                        <PatientHistory />
                     </TabPanel>
                 </TabContext>
             </Grid>
