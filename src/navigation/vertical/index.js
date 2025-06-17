@@ -1,21 +1,19 @@
 const navigation = () => {
   return [
     {
-      title: 'Home',
-      path: '/home',
+      title: 'Dashboard',
+      path: '/dashboard',
       icon: 'mdi:home-outline',
     },
     {
-      title: 'Second Page',
-      path: '/second-page',
-      icon: 'mdi:email-outline',
+      title: 'Televisit Room',
+      path: '/televisit',
+      icon: 'mdi:video',
     },
     {
-      path: '/acl',
-      action: 'read',
-      subject: 'acl-page',
-      title: 'Access Control',
-      icon: 'mdi:shield-outline',
+      path: '/appointments',
+      title: 'Appointments',
+      icon: 'mdi:history',
     }
   ]
 }
